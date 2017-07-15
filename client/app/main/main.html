@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <navbar></navbar>
 <div class="Main">
-  <form action="" class="Main-form" name="userForm" ng-submit="userForm.$valid && vm.login()">
+  <form class="Main-form" name="userForm" ng-submit="userForm.$valid && vm.login()">
     <input type="text" name="numDocumento" class="Main-input" ng-model="vm.user.numDocumento" ng-pattern="/^[0-9]*$/" minlenght="5" maxlength="15" placeholder="&#128100; Usuario" required autofocus>
     <input type="password" name="password" class="Main-input" ng-model="vm.user.password" placeholder="&#x1F512; Contraseña" required>
     <div class="Errors-form">
@@ -14,7 +14,7 @@
     <div class="Main-recover">
       <input type="checkbox"> Recordar Contraseña
     </div>
-    <button type="submit" class="Main-button" ng-disabled="userForm.$invalid"  ui-sref="pedido-list">Ingresar</button>
+    <button type="submit" class="Main-button" ng-disabled="userForm.$invalid">Ingresar</button>
   </form>
 </div>
 <footer></footer>

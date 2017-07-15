@@ -12,7 +12,7 @@
       this.authService.login(this.user);
     }
     $onInit() {
-      console.log('Welcome to te Remote Admin');
+      console.log('Welcome to the Remote Admin');
     }
   }
   MainController.$inject = ['authService'];
