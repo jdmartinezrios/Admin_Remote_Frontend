@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<navbar></navbar>
+<div class="Main">
+  <form class="Main-form" name="userForm" ng-submit="userForm.$valid && vm.login()">
+    <input type="text" name="numDocumento" class="Main-input" ng-model="vm.user.numDocumento" ng-pattern="/^[0-9]*$/" minlenght="5" maxlength="15" placeholder="&#128100; Usuario" required autofocus>
+    <input type="password" name="password" class="Main-input" ng-model="vm.user.password" placeholder="&#x1F512; Contraseña" required>
+    <div class="Errors-form">
+      <span class="Error-FormMessage" ng-show="userForm.numDocumento.$error.pattern">Este campo solo admite numeros</span>
+      <span class="Error-FormMessage" ng-show="userForm.numDocumento.$touched && userForm.numDocumento.$invalid">
+            Debe ingresar un numero de Documento</span>
+      <span class="Error-FormMessage" ng-show="userForm.password.$touched && userForm.password.$invalid">
+            Debe ingresar una contraseña.</span>
+    </div>
+    <div class="Main-recover">
+      <input type="checkbox"> Recordar Contraseña
+    </div>
+    <button type="submit" class="Main-button" ng-disabled="userForm.$invalid">Ingresar</button>
+  </form>
+</div>
+<footer></footer>

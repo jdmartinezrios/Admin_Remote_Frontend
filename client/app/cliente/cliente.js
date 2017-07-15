@@ -1,0 +1,14 @@
+'use strict';
+
+angular.module('administracionRemotaApp')
+  .config(function($stateProvider) {
+    $stateProvider
+      .state('cliente-create', {
+        url: '/cliente-create',
+        template: '<cliente-create></cliente-create>',
+      })
+      .state('cliente-list', {
+        url: '/cliente-list',
+        template: '<cliente-list></cliente-list>',
+      });
+  });
