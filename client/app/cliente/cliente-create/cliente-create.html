@@ -1,1 +1,18 @@
-<div>This is the cliente-create view.</div>
+<section class="Body-create">
+  <form class="userCreate" name="userCreate" ng-submit="vm.clienteCreate() && userCreate.$invalid">
+    <h1 class="userCreate-title">Crea un Cliente</h1>
+    <label for="" class="userCreate-label">Nombres</label>
+    <input type="text" class="userCreate-input" ng-model="vm.clientes.nombres" placeholder="Nombres">
+    <label for="" class="userCreate-label">Apellidos</label>
+    <input type="text" class="userCreate-input" ng-model="vm.clientes.apellidos" placeholder="Apellidos">
+    <label for="" class="userCreate-label">Numero de Documento</label>
+    <input type="text" class="userCreate-input" ng-model="vm.clientes.numDocumento" placeholder="Numero Documento">
+    <label for="" class="userCreate-label">Telefono</label>
+    <input type="text" class="userCreate-input" ng-model="vm.clientes.telefono" placeholder="Telefono">
+    <label for="" class="userCreate-label">Telefono 2</label>
+    <input type="text" class="userCreate-input" ng-model="vm.clientes.telefono2" placeholder="Telefono_2">
+    <label for="" class="userCreate-label">Contraseña</label>
+    <input type="password" class="userCreate-input" ng-model="vm.clientes.password" placeholder="Contraseña">
+    <button type="submit" class="btn btn-primary userCreate-button" name="button">Crear</button>
+  </form>
+</section>

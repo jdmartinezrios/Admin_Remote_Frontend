@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <section class="body">
-  <nav class="navbar navbar-default navbar-static-top">
-    <a ui-sref="main" class="log">
-    Logout
-  </a>
-    <div class="log2">
-      servic
-    </div>
-  </nav>
-  <div class="Menu-bar">
+  <navbarAdmin></navbarAdmin>
+    <div class="Menu-bar" id="sidebar">
     <div class="Menu-logo">
       <input type="search" name="" value="" class="search-input" placeholder="Filter Navigator">
       <i class="fa fa-filter input-icon"></i>
@@ -17,30 +10,33 @@
       <a href="" class="fa fa-archive"></a><a href="" class="fa fa-star"></a><a href="" class="fa fa-history"></a>
     </div>
     <ul class="Menu-items">
-      <li class="Menu-list"><a href="" class="Menu-links">Pedidos</a></li>
-      <ul class="Menu-itemsin">
-        <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Envios</a></li>
-        <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Referencias</a></li>
-        <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Consultas</a></li>
-      </ul>
+      <li class="Menu-list2"><a href="" class="Menu-links" ng-click="vm.verItems()" ui-sref="pedido-list">Pedidos <i class="fa fa-chevron-down pull-right" id="flecha2"></i></a>
+          <ul class="Menu-itemsin2">
+            <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Envios</a></li>
+            <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Referencias</a></li>
+            <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Consultas</a></li>
+          </ul>
+      </li>
       <li class="Menu-list"><a href="" class="Menu-links">Productos</a></li>
-      <li class="Menu-list"><a href="" class="Menu-links">Clientes</a></li>
-      <ul class="Menu-itemsin">
-        <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Pedidos</a></li>
-        <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Referencias</a></li>
-        <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Consultas</a></li>
-      </ul>
-      <li class="Menu-list"><a href="" class="Menu-links">Tiendas</a></li>
-      <ul class="Menu-itemsin">
-        <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Pedidos</a></li>
-        <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Referencias</a></li>
-        <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Consultas</a></li>
-      </ul>
+      <li class="Menu-list1"><a href="" class="Menu-links"  ng-click="vm.mostrarClientes()">Clientes <i class="fa fa-chevron-down pull-right" id="flecha"></i></a>
+         <ul class="Menu-itemsin2">
+            <li class="Menu-listin"><a ui-sref="cliente-create" class="Menu-linksin">Crear Cliente</a></li>
+            <li class="Menu-listin"><a ui-sref="cliente-list" class="Menu-linksin">Lista Clientes</a></li>
+            <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Consultas</a></li>
+         </ul>
+      </li>
+      <li class="Menu-list3"><a href="" ng-click="vm.verItems2()" class="Menu-links">Tiendas <i class="fa fa-chevron-down pull-right" id="flecha3"></i></a>
+          <ul class="Menu-itemsin2">
+            <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Pedidos</a></li>
+            <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Referencias</a></li>
+            <li class="Menu-listin"><a ui-sref="#" class="Menu-linksin">Consultas</a></li>
+          </ul>
+      </li>
     </ul>
   </div>
-  <section class="contenido">
+  <section class="contenido" id="contenido" ui-view="">
     <div class="contenido-nav">
-      <div class="fa fa-bars barra"></div>
+      <div class="fa fa-bars barra" id="barrita" ng-click="vm.ocultarSlide()"></div>
       <div class="contenido-nav-actions">
         <a class="nav-actions" href="">Incidents</a>
         <a class="nav-actions" href="">New</a>
@@ -51,7 +47,7 @@
     </select>
       <input class="contenido-search" type="search" placeholder="Search">
       <div class="contenido-pages">
-        <i class="fa fa-bolt pages-icon_bolt"></i>
+        <i class="fa fa-bolt pages-icon_bolt" id="prub"></i>
         <i class="fa fa-backward pages-icon"></i>
         <i class="fa fa-caret-left pages-icon2"></i>
         <input type="text" name="" id="" class="pages-input">
@@ -71,8 +67,8 @@
             <th class="Tabla-hfilas_special"><span class="fa fa-search Tabla-icon2"></span></th>
             <th class="Tabla-hfilas"><span ui-sref="#" class="fa fa-bars Tabla-icon"></span> Numero </th>
             <th class="Tabla-hfilas"><span ui-sref="#" class="fa fa-bars Tabla-icon"></span> Llamada </th>
-            <th class="Tabla-hfilas"><span ui-sref="#" class="fa fa-bars Tabla-icon"></span> Descripcion corta </th>
-            <th class="Tabla-hfilas"><span ui-sref="#" class="fa fa-bars Tabla-icon"></span> Prioridad </th>
+            <th class="Tabla-hfilas"><span ui-sref="#" class="fa fa-bars Tabla-icon"></span> Nombre Cliente </th>
+            <th class="Tabla-hfilas"><span ui-sref="#" class="fa fa-bars Tabla-icon"></span> Cantidad </th>
             <th class="Tabla-hfilas"><span ui-sref="#" class="fa fa-bars Tabla-icon"></span> Estado </th>
           </tr>
         </thead>
@@ -85,187 +81,7 @@
             <td class="Tabla-filas">{{item.cliente.nombres}}</td>
             <td class="Tabla-filas">{{item.cantidad}}</td>
             <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
-          <tr class="Tabla-row" ng-repeat="item in vm.pedidosList">
-            <th class="Tabla-filas_special"><input type="checkbox"></th>
-            <th class="Tabla-filas_special"><span class="fa fa-info-circle Tabla-icon_body"></span></th>
-            <td class="Tabla-filas">{{item.codigo}}</td>
-            <td class="Tabla-filas">{{item.cliente.telefono}}</td>
-            <td class="Tabla-filas">{{item.cliente.nombres}}</td>
-            <td class="Tabla-filas">{{item.cantidad}}</td>
-            <td class="Tabla-filas">{{item.cliente.tipo}}</td>
-          </tr>
+          </tr>          
         </tbody>
       </table>
     </div>

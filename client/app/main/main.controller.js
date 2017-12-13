@@ -10,7 +10,7 @@
     login() {
       console.log('DATOS DE LOGIN ',this.user);
       this.authService.login(this.user);
-    }
+    }    
     $onInit() {
       console.log('Welcome to the Remote Admin');
     }

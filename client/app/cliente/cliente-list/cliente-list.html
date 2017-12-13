@@ -1,1 +1,28 @@
-<div>This is the cliente-list view.</div>
+<section class="Table-wrap">
+	<table class="Table">
+		<thead class="Table-head">
+			<tr class="Table-row">
+				<th class="Table-hfilas">id</th>
+				<th class="Table-hfilas">Nombres</th>
+				<th class="Table-hfilas">Apellidos</th>
+				<th class="Table-hfilas">Numero de documento</th>
+				<th class="Table-hfilas">Telefono</th>
+				<th class="Table-hfilas">Telefono 2</th>
+				<th class="Table-hfilas">Accion</th>				
+			</tr>		
+		</thead>
+		<tbody class="Table-body">
+			<tr class="Table-row" ng-repeat="item in vm.clientesList">
+				<td class="Table-filas">{{item.id}}</td>
+				<td class="Table-filas">{{item.nombres}}</td>
+				<td class="Table-filas">{{item.apellidos}}</td>
+				<td class="Table-filas">{{item.numDocumento}}</td>
+				<td class="Table-filas">{{item.telefono}}</td>
+				<td class="Table-filas">{{item.telefono2}}</td>
+				<td class="Table-filas">
+					<a ui-sref="#" class="btn btn-primary">Editar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
